@@ -1,0 +1,14 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  - name: centos7
+    box: centos/7
+    memory: 2048
+    cpu: 2
+  - name: almalinux8
+    box: almalinux/8
+    memory: 2048
+    cpu: 2
