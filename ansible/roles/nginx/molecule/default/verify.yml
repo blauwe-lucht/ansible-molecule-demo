@@ -1,0 +1,26 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Stat nginx binary
+      ansible.builtin.stat:
+        path: /usr/sbin/nginx
+      register: stat_result
+
+    - name: Assert nginx binary is present
+      ansible.builtin.assert:
+        that:
+          - stat_result.stat.exists
+
+    - name: Retrieve nginx status
+      ansible.builtin.command:
+        cmd: systemctl status nginx
+      changed_when: false
+      register: command_result
+
+    - name: Assert nginx service is running
+      ansible.builtin.assert:
+        that:
+          - "'active (running)' in command_result.stdout"

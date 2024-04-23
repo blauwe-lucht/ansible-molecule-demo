@@ -1,10 +1,14 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "generic/ubuntu2204"
-    config.vm.synced_folder ".", "/vagrant" #, mount_options: ["dmode=700,fmode=600"]
+    config.vm.synced_folder "..", "/vagrant" #, mount_options: ["dmode=700,fmode=600"]
 
-    # Enable nested virtualization:
     config.vm.provider "virtualbox" do |vb|
+        # Enable nested virtualization:
         vb.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
+
+        # Increase the size of the VM, since it will have nested VMs:
+        vb.cpus = 4
+        vb.memory = 8192
     end
 
     config.vm.provision "shell" do |shell|
@@ -26,6 +30,7 @@ Vagrant.configure("2") do |config|
             pip install "molecule[vagrant]"
             pip install molecule-vagrant
             pip install 'molecule-plugins[vagrant]'
+            pip install pytest-testinfra
         SHELL
     end
   end

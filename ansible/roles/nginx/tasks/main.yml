@@ -1,0 +1,26 @@
+---
+- name: Show message for system role
+  ansible.builtin.debug:
+    msg: Starting system role!
+
+- name: Update yum cache
+  ansible.builtin.yum:
+    update_cache: true
+  become: true
+
+- name: Install epel-release
+  ansible.builtin.yum:
+    name: epel-release
+  become: true
+
+- name: Install nginx
+  ansible.builtin.yum:
+    name: nginx
+  become: true
+
+- name: Enable and start nginx service
+  ansible.builtin.service:
+    name: nginx
+    enabled: true
+    state: started
+  become: true
