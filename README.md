@@ -81,8 +81,3 @@ and then use the ID to ssh into the VM:
 ``` bash
 vagrant ssh a77ef7e
 ```
-
-## Known issues
-
-For some reason Vagrant on the host looses its metadata after molecule creates the Vagrant VMs in the VM.
-No idea why yet.
