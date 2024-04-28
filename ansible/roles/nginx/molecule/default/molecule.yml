@@ -13,7 +13,6 @@ platforms:
     memory: 2048
     cpu: 2
 verifier:
-  # name: ansible
-  # enabled: true
-  name: testinfra
+  name: ansible
   enabled: true
+
