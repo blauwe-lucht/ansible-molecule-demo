@@ -30,7 +30,6 @@ Vagrant.configure("2") do |config|
             pip install "molecule[vagrant]"
             pip install molecule-vagrant
             pip install 'molecule-plugins[vagrant]'
-            pip install pytest-testinfra
         SHELL
     end
   end
